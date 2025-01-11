@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InputFieldProps } from './types';
+import { InputFieldProps } from '../types/types';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 export const InputField: React.FC<InputFieldProps> = ({

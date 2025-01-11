@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LoginPage } from "./loginPage/LoginPage";
+import { LoginPage } from "./pages/LoginPage";
 
 const App: React.FC = () => {
     return (
