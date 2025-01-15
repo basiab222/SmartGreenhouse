@@ -1,0 +1,188 @@
+.auth-container {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  padding-bottom: 14rem;
+  background-color: white;
+  max-width: 375px;
+}
+
+.auth-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  width: 100%;
+  min-height: 552px;
+}
+
+.auth-logo {
+  object-fit: contain;
+  width: 1.5rem;
+  aspect-ratio: 1;
+  fill: white;
+}
+
+.auth-header {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  max-width: 100%;
+  width: 327px;
+}
+
+.auth-title {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: normal;
+  color: rgb(38, 38, 38);
+}
+
+.auth-subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: normal;
+  line-height: 1;
+  color: rgb(113, 113, 113);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 327px;
+}
+
+.input-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgb(63, 63, 63);
+}
+
+.input-wrapper {
+  display: flex;
+  overflow: hidden;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1;
+  border-radius: 0.75rem;
+  border: 1px solid;
+  min-height: 48px;
+}
+
+.input-field {
+  flex: 1;
+  min-width: 240px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: rgb(156, 156, 156);
+}
+
+.input-field:focus {
+  color: #1F2024;
+}
+
+.input-field-filled {
+  color: #333333;
+}
+
+.input-error {
+  border-color: #d65757;
+}
+
+.input-focused {
+  border-color: #216607;
+}
+
+.input-default {
+  border-color: rgb(214, 211, 209);
+}
+
+.error-message {
+  margin-top: 0.5rem;
+  font-size: 12px;
+  font-family: Inter, sans-serif;
+  color: #d65757;
+}
+
+.submit-button {
+  overflow: hidden;
+  gap: 0.5rem;
+  align-self: stretch;
+  padding: 1rem;
+  width: 100%;
+  color: white;
+  background-color: rgb(54, 83, 20);
+  border-radius: 0.75rem;
+  min-height: 48px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.submit-button:hover {
+  background-color: #216607;
+}
+
+.submit-button:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #216607;
+  ring-offset: 2px;
+}
+
+.login-link-container {
+  align-self: flex-start;
+  margin-top: 1rem;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.login-text {
+  letter-spacing: normal;
+  line-height: 1rem;
+  color: rgb(113, 113, 113);
+}
+
+.login-link {
+  color: rgb(54, 83, 20);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.login-link:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #216607;
+  ring-offset: 2px;
+  border-radius: 0.125rem;
+}
+
+.password-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.password-toggle:focus {
+  outline: none;
+}
+
+.password-toggle svg {
+  width: 16px;
+  height: 16px;
+}

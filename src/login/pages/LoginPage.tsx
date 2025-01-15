@@ -1,21 +1,23 @@
-import React from 'react';
-import { InputField } from '../components/InputField';
-import { PasswordField } from '../components/PasswordField';
-import { Button } from '../components/Button';
-import { LoginFormData } from '../types/AuthTypes';
-import '../styles/auth.css';
+import React from "react";
+import { InputField } from "../components/InputField";
+import { PasswordField } from "../components/PasswordField";
+import { Button } from "../components/Button";
+import { LoginFormData } from "../types/AuthTypes";
+import "../styles/auth.css";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage: React.FC = () => {
   const [formData, setFormData] = React.useState<LoginFormData>({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [error, setError] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (field: keyof LoginFormData) => (value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
     setError(false);
   };
@@ -23,6 +25,10 @@ export const LoginPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(true);
+  };
+
+  const handleRegisterClick = () => {
+    navigate("/register");
   };
 
   return (
@@ -44,7 +50,7 @@ export const LoginPage: React.FC = () => {
               type="email"
               name="email"
               value={formData.email}
-              onChange={handleInputChange('email')}
+              onChange={handleInputChange("email")}
               error={error}
             />
             <div className="mt-4">
@@ -52,7 +58,7 @@ export const LoginPage: React.FC = () => {
                 placeholder="Password"
                 name="password"
                 value={formData.password}
-                onChange={handleInputChange('password')}
+                onChange={handleInputChange("password")}
                 error={error}
               />
             </div>
@@ -69,7 +75,11 @@ export const LoginPage: React.FC = () => {
             <Button type="submit">Login</Button>
             <div className="register-text">
               <span className="text-zinc-500">Not a member?</span>{" "}
-              <button type="button" className="register-link">
+              <button
+                type="button"
+                className="register-link"
+                onClick={handleRegisterClick}
+              >
                 Register now
               </button>
             </div>
