@@ -31,6 +31,22 @@ export const LoginPage: React.FC = () => {
     navigate("/register");
   };
 
+  const handleLoginClick = () => {
+    const exampleUser = {
+      email: "e@e.com",
+      password: "123",
+    };
+
+    if (
+      formData.email === exampleUser.email &&
+      formData.password === exampleUser.password
+    ) {
+      navigate("/greenhouse");
+    } else {
+      setError(true);
+    }
+  };
+
   return (
     <div className="auth-container">
       <div className="header-container">
@@ -72,7 +88,7 @@ export const LoginPage: React.FC = () => {
             </button>
           </div>
           <div className="button-section">
-            <Button type="submit">Login</Button>
+            <Button type="submit" onClick={handleLoginClick}>Login</Button>
             <div className="register-text">
               <span className="text-zinc-500">Not a member?</span>{" "}
               <button

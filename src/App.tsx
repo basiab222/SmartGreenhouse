@@ -2,6 +2,7 @@ import * as React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./login/pages/LoginPage";
 import { RegisterPage } from "./registration/pages/RegisterPage";
+import { Greenhouse } from "./dashboard/pages/Greenhouse2";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Route index element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/greenhouse" element={<Greenhouse />} />
         </Routes>
       </BrowserRouter>
     </div>
