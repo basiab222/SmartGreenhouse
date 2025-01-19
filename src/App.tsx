@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./login/pages/LoginPage";
 import { RegisterPage } from "./registration/pages/RegisterPage";
 import { Greenhouse } from "./dashboard/pages/Greenhouse2";
+import { PlantsView } from "./myPlants/pages/PlantsView";
+import { AddPlant } from "./addPlant/components/addPlant";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/greenhouse" element={<Greenhouse />} />
+          <Route path="/plantsView" element={<PlantsView />} />
+          <Route path="/addPlant" element={<AddPlant />} />
         </Routes>
       </BrowserRouter>
     </div>

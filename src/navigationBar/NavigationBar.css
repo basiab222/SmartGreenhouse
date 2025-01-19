@@ -1,0 +1,37 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 768;
+    width: 375px;
+    margin: 0 auto;
+    background: white;
+  }
+
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    padding: 16px 36px;
+    background: white;
+  }
+  
+  .navigation__item {
+    width: 48px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+  }
+  
+  .navigation__item img {
+    opacity: 0.6;
+  }
+  
+  .navigation__item--active img {
+    opacity: 1;
+    filter: invert(27%) sepia(89%) saturate(431%) hue-rotate(84deg) brightness(94%) contrast(89%);
+    filter: brightness(0) saturate(100%) invert(27%) sepia(89%) saturate(431%) hue-rotate(84deg) brightness(94%) contrast(89%);
+  }

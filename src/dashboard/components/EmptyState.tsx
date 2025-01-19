@@ -1,6 +1,7 @@
 import React from 'react';
 import { EmptyStateProps } from '../types';
 import '../styles/Greenhouse.css';
+import { useNavigate } from "react-router-dom";
 
 export const EmptyState: React.FC<EmptyStateProps> = ({
   title,
@@ -8,6 +9,13 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   imageSrc,
   imageAlt
 }) => {
+
+  const navigate = useNavigate();
+
+  const handleMyPlantsClick = () => {
+    navigate("/plantsView");
+  };
+
   return (
     <div className="empty-state-container">
       <img
@@ -24,7 +32,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
           {description}
         </div>
       </div>
-      <button className="empty-state-button">
+      <button className="empty-state-button" onClick={handleMyPlantsClick}>
         My plants
       </button>
     </div>

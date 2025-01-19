@@ -1,15 +1,9 @@
 import * as React from "react";
 import { MetricCard } from "../components/MetricCard";
 import { PlantCard } from "../components/PlantCard";
-import { NavItem } from "../components/NavItem";
+import { MainLayout } from '/Users/basia/SmartGreenhouse/SmartGreenhouse/src/navigationBar/MainLayout';
 import "../styles/Greenhouse.css";
 
-const navItems = [
-    { imageSrc: 'https://cdn.builder.io/api/v1/image/assets/ed943c9eefda4aba883f53911d041e92/f560d7516179a8cf92657358b41f47f380ba15c8b7b5fb3731488335279dcc9c?apiKey=ed943c9eefda4aba883f53911d041e92&', imageAlt: 'Navigation item 1', isActive: true },
-    { imageSrc: 'https://cdn.builder.io/api/v1/image/assets/ed943c9eefda4aba883f53911d041e92/c17a2369fa84909206416c6c230c2bf413c13c95b6bd59b23437b1d6c8365405?apiKey=ed943c9eefda4aba883f53911d041e92&', imageAlt: 'Navigation item 2', isActive: false },
-    { imageSrc: 'https://cdn.builder.io/api/v1/image/assets/ed943c9eefda4aba883f53911d041e92/53fa4a82882b5b5ec12872b79689334dd5206c143ada684d68bbdab6ed2a01eb?apiKey=ed943c9eefda4aba883f53911d041e92&', imageAlt: 'Navigation item 3', isActive: false },
-    { imageSrc: 'https://cdn.builder.io/api/v1/image/assets/ed943c9eefda4aba883f53911d041e92/be0f861f2bdd4f7a5f1d220c36f33cb359a09c95389f162342e90682a59efbe6?apiKey=ed943c9eefda4aba883f53911d041e92&', imageAlt: 'Navigation item 4', isActive: false }
-  ];
 
 export const Greenhouse: React.FC = () => {
   const metrics = [
@@ -36,41 +30,33 @@ export const Greenhouse: React.FC = () => {
   ];
 
   return (
-    <div className="greenhouse-container">
-        <header className="greenhouse-header">
-        <div className="greenhouse-title">
-          My Greenhouse
-        </div>
-      </header>
-      <div className="greenhouse-content">
-        <PlantCard
-          image="https://cdn.builder.io/api/v1/image/assets/ed943c9eefda4aba883f53911d041e92/a1e1c1baad151dad0adb3968b480a06365d812ac098c1eb9bc3aca17aadfbacb?apiKey=ed943c9eefda4aba883f53911d041e92&"
-          title="Cactus"
-          description="Cactus description"
-        />
-
-        <div className="metrics-row">
-          {metrics.slice(0, 2).map((metric, index) => (
-            <MetricCard key={index} {...metric} />
-          ))}
-        </div>
-
-        <div className="metrics-row">
-          {metrics.slice(2, 4).map((metric, index) => (
-            <MetricCard key={index} {...metric} />
-          ))}
-        </div>
-      </div>
-      <div className="navigation-container">
-        {navItems.map((item, index) => (
-          <NavItem
-            key={index}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            isActive={item.isActive}
+    <MainLayout currentPage="dashboard">
+      <div className="greenhouse-container">
+          <header className="greenhouse-header">
+          <div className="greenhouse-title">
+            My Greenhouse
+          </div>
+        </header>
+        <div className="greenhouse-content">
+          <PlantCard
+            image="https://cdn.builder.io/api/v1/image/assets/ed943c9eefda4aba883f53911d041e92/a1e1c1baad151dad0adb3968b480a06365d812ac098c1eb9bc3aca17aadfbacb?apiKey=ed943c9eefda4aba883f53911d041e92&"
+            title="Cactus"
+            description="Cactus description"
           />
-        ))}
+
+          <div className="metrics-row">
+            {metrics.slice(0, 2).map((metric, index) => (
+              <MetricCard key={index} {...metric} />
+            ))}
+          </div>
+
+          <div className="metrics-row">
+            {metrics.slice(2, 4).map((metric, index) => (
+              <MetricCard key={index} {...metric} />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
