@@ -1,9 +1,15 @@
 import * as React from 'react';
 import { HeaderProps } from '../types';
+import { useNavigate } from 'react-router-dom';
 import { HeaderIcon } from './HeaderIcon';
 import '../MyPlants.css';
 
 export const Header: React.FC<HeaderProps> = ({ onSearchClick }) => {
+  const navigate = useNavigate();
+
+  const handleAddClick = () => {
+    navigate('/addPlant'); // Change this to your desired route
+  };
   return (
     <div className="header">
       <div className="headerContent">
@@ -16,7 +22,8 @@ export const Header: React.FC<HeaderProps> = ({ onSearchClick }) => {
           />
           <HeaderIcon
             iconSrc="https://cdn.builder.io/api/v1/image/assets/ed943c9eefda4aba883f53911d041e92/0f83006432f1d3b016862440e49571167c06add54f554b3e56d7920b01200f39?apiKey=ed943c9eefda4aba883f53911d041e92&"
-            alt="Notifications"
+            alt="Add"
+            onClick={handleAddClick}
           />
         </div>
       </div>

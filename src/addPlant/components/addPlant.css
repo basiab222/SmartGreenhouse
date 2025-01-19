@@ -27,6 +27,7 @@
     align-items: center;
     width: 100%;
     padding: 20px 24px;
+    padding-top: 20px;
     background-color: white;
     z-index: 10;
   }

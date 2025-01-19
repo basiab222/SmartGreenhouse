@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PlantFormData } from '../types';
 import { Slider } from './Slider';
 import { TimePicker } from './TimeInput';
@@ -6,6 +7,8 @@ import { PhotoUpload } from './PhotoUpload';
 import './addPlant.css';
 
 export function AddPlant() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState<PlantFormData>({
     name: '',
     description: '',
@@ -34,13 +37,19 @@ export function AddPlant() {
 
   const handleSubmit = () => {
     console.log(formData);
+    navigate('/plantsView');
   };
+
+  const handleCancel = () => {
+    navigate('/plantsView');
+  };
+  
 
   return (
     <div className="form-wrapper">
       <div className="form-container">
         <header className="header">
-          <button className="header-button">Cancel</button>
+          <button className="header-button" onClick={handleCancel}>Cancel</button>
           <h1 className="header-title">Add New Plant</h1>
           <button className="header-button" onClick={handleSubmit}>Save</button>
         </header>
