@@ -1,6 +1,6 @@
 import React from "react";
 import { EmptyState } from "../components/EmptyState";
-import { MainLayout } from '/Users/basia/SmartGreenhouse/SmartGreenhouse/src/navigationBar/MainLayout';
+import { MainLayout } from 'C:/Users/UzytkownikML/Downloads/SmartGreenhouse/src/navigationBar/MainLayout';
 import "../styles/Greenhouse.css";
 
 

@@ -6,7 +6,7 @@ import { PlantCard } from '../components/PlantCard';
 import { Header } from '../components/Header';
 import { SearchBar } from '../components/SearchBar';
 import { PlantData } from '../types';
-import { MainLayout } from '/Users/basia/SmartGreenhouse/SmartGreenhouse/src/navigationBar/MainLayout';
+import { MainLayout } from 'C:/Users/UzytkownikML/Downloads/SmartGreenhouse/src/navigationBar/MainLayout';
 import '../MyPlants.css';
 
 const initialPlants: PlantData[] = [

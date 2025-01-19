@@ -1,7 +1,7 @@
 import * as React from "react";
 import { MetricCard } from "../components/MetricCard";
 import { PlantCard } from "../components/PlantCard";
-import { MainLayout } from '/Users/basia/SmartGreenhouse/SmartGreenhouse/src/navigationBar/MainLayout';
+import { MainLayout } from 'C:/Users/UzytkownikML/Downloads/SmartGreenhouse/src/navigationBar/MainLayout';
 import "../styles/Greenhouse.css";
 
 
