@@ -5,6 +5,7 @@ import { RegisterPage } from "./registration/pages/RegisterPage";
 import { Greenhouse } from "./dashboard/pages/Greenhouse2";
 import { PlantsView } from "./myPlants/pages/PlantsView";
 import { AddPlant } from "./addPlant/components/addPlant";
+import { Profile } from "./profile/Profile";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/greenhouse" element={<Greenhouse />} />
           <Route path="/plantsView" element={<PlantsView />} />
           <Route path="/addPlant" element={<AddPlant />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>

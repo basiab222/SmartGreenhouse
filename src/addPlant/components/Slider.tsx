@@ -1,3 +1,5 @@
+
+//Slider.tsx
 import React from 'react';
 import { SliderProps } from '../types';
 

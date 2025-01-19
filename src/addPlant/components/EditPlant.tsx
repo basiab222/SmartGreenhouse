@@ -1,43 +1,41 @@
-//addPlant.tsx
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlantFormData } from '../types';
 import { Slider } from './Slider';
 import { TimePicker } from './TimeInput';
 import { PhotoUpload } from './PhotoUpload';
-import './addPlant.css';
+import './editPlant.css';
 
-export function AddPlant() {
+interface EditPlantProps {
+  plantData: PlantFormData; // Incoming plant data, including ID
+}
+
+export function EditPlant({ plantData }: EditPlantProps) {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<PlantFormData>({
-    name: '',
-    description: '',
-    temperature: 0,
-    humidity: 0,
-    waterAmount: 0,
-    waterFrequency: 0,
-    lightFrom: '00:00',
-    lightTo: '00:00',
-    photo: null
-  });
+  const [formData, setFormData] = useState<PlantFormData>(plantData);
+
+  // Synchronize with incoming plant data
+  useEffect(() => {
+    setFormData(plantData);
+  }, [plantData]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   const handlePhotoChange = (file: File) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      photo: file
+      photo: file,
     }));
   };
 
   const handleSubmit = () => {
-    console.log(formData);
+    console.log('Updated plant data:', formData);
     navigate('/plantsView');
   };
 
@@ -45,13 +43,12 @@ export function AddPlant() {
     navigate('/plantsView');
   };
 
-
   return (
     <div className="form-wrapper">
       <div className="form-container">
         <header className="header">
           <button className="header-button" onClick={handleCancel}>Cancel</button>
-          <h1 className="header-title">Add New Plant</h1>
+          <h1 className="header-title">Edit Plant</h1>
           <button className="header-button" onClick={handleSubmit}>Save</button>
         </header>
 
@@ -84,7 +81,7 @@ export function AddPlant() {
 
         <Slider
           value={formData.temperature}
-          onChange={(value) => setFormData(prev => ({ ...prev, temperature: value }))}
+          onChange={(value) => setFormData((prev) => ({ ...prev, temperature: value }))}
           min={0}
           max={40}
           label="Temperature"
@@ -93,7 +90,7 @@ export function AddPlant() {
 
         <Slider
           value={formData.humidity}
-          onChange={(value) => setFormData(prev => ({ ...prev, humidity: value }))}
+          onChange={(value) => setFormData((prev) => ({ ...prev, humidity: value }))}
           min={0}
           max={100}
           label="Humidity"
@@ -104,7 +101,7 @@ export function AddPlant() {
           <h2 className="input-label">Watering</h2>
           <Slider
             value={formData.waterAmount}
-            onChange={(value) => setFormData(prev => ({ ...prev, waterAmount: value }))}
+            onChange={(value) => setFormData((prev) => ({ ...prev, waterAmount: value }))}
             min={0}
             max={500}
             label="Amount"
@@ -112,7 +109,7 @@ export function AddPlant() {
           />
           <Slider
             value={formData.waterFrequency}
-            onChange={(value) => setFormData(prev => ({ ...prev, waterFrequency: value }))}
+            onChange={(value) => setFormData((prev) => ({ ...prev, waterFrequency: value }))}
             min={0}
             max={7}
             label="Frequency"
@@ -125,12 +122,12 @@ export function AddPlant() {
           <div className="light-container">
             <TimePicker
               value={formData.lightFrom}
-              onChange={(value) => setFormData(prev => ({ ...prev, lightFrom: value }))}
+              onChange={(value) => setFormData((prev) => ({ ...prev, lightFrom: value }))}
               label="From"
             />
             <TimePicker
               value={formData.lightTo}
-              onChange={(value) => setFormData(prev => ({ ...prev, lightTo: value }))}
+              onChange={(value) => setFormData((prev) => ({ ...prev, lightTo: value }))}
               label="To"
             />
           </div>

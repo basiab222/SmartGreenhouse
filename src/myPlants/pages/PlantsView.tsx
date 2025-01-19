@@ -1,5 +1,3 @@
-//PlantsView
-
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlantCard } from '../components/PlantCard';
@@ -7,6 +5,7 @@ import { Header } from '../components/Header';
 import { SearchBar } from '../components/SearchBar';
 import { PlantData } from '../types';
 import { MainLayout } from '/Users/basia/SmartGreenhouse/SmartGreenhouse/src/navigationBar/MainLayout';
+import { DeactivatePlantModal } from '../components/DeactivatePlantModel';
 import '../MyPlants.css';
 
 const initialPlants: PlantData[] = [
@@ -49,12 +48,20 @@ export const PlantsView: React.FC = () => {
   const navigate = useNavigate();
   const [plants, setPlants] = React.useState<PlantData[]>(initialPlants);
   const [isSearchVisible, setIsSearchVisible] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedPlant, setSelectedPlant] = React.useState<PlantData | null>(null);
 
   const handleToggle = (id: string) => {
-    setPlants(plants.map(plant => ({
-      ...plant,
-      isActive: plant.id === id ? !plant.isActive : false
-    })));
+    const plant = plants.find(p => p.id === id);
+    if (plant?.isActive) {
+      setSelectedPlant(plant);
+      setIsModalOpen(true);
+    } else {
+      setPlants(plants.map(plant => ({
+        ...plant,
+        isActive: plant.id === id ? !plant.isActive : false
+      })));
+    }
   };
 
   const handleEdit = (id: string) => {
@@ -63,23 +70,55 @@ export const PlantsView: React.FC = () => {
 
   return (
     <MainLayout currentPage="myPlants">
-    <div className="container">
-      {isSearchVisible ? (
-        <SearchBar onClose={() => setIsSearchVisible(false)} />
-      ) : (
-        <Header onSearchClick={() => setIsSearchVisible(true)} />
-      )}
-      <div className="mainContent">
-        {plants.map((plant) => (
-          <PlantCard
-            key={plant.id}
-            {...plant}
-            onToggle={handleToggle}
-            onEdit={handleEdit}
+      <div className="container">
+        {isSearchVisible ? (
+          <SearchBar onClose={() => setIsSearchVisible(false)} />
+        ) : (
+          <Header onSearchClick={() => setIsSearchVisible(true)} />
+        )}
+        <div className="mainContent">
+          {plants.map((plant) => (
+            <PlantCard
+              key={plant.id}
+              {...plant}
+              onToggle={handleToggle}
+              onEdit={handleEdit}
+            />
+          ))}
+        </div>
+        {selectedPlant && (
+          <DeactivatePlantModal
+            isOpen={isModalOpen}
+            onClose={() => {
+              setIsModalOpen(false);
+              setSelectedPlant(null);
+            }}
+            plantData={selectedPlant}
+            title="Deactivate plant"
+            description="Are you sure you want to deactivate your plant settings?"
+            primaryAction={{
+              label: "Deactivate",
+              variant: "primary",
+              onClick: () => {
+                setPlants(plants.map(plant => ({
+                  ...plant,
+                  isActive: plant.id === selectedPlant.id ? false : plant.isActive
+                })));
+                setIsModalOpen(false);
+                setSelectedPlant(null);
+              }
+            }}
+            secondaryAction={{
+              label: "Cancel",
+              variant: "secondary",
+              onClick: () => {
+                setIsModalOpen(false);
+                setSelectedPlant(null);
+              }
+            }}
           />
-        ))}
+        )}
       </div>
-    </div>
     </MainLayout>
   );
 };

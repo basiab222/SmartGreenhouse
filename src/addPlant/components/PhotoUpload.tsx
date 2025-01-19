@@ -1,3 +1,5 @@
+
+//PhotoUpload.tsx
 import React, { useRef } from 'react';
 import { PhotoUploadProps } from '../types';
 

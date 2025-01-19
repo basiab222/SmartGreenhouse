@@ -35,3 +35,19 @@ export interface HeaderIconProps {
 export interface HeaderProps {
   onSearchClick: () => void;
 }
+
+export interface ButtonProps {
+  label: string;
+  variant: 'primary' | 'secondary';
+  onClick?: () => void;
+}
+
+export interface ModalProps {
+  title: string;
+  description: string;
+  primaryAction: ButtonProps;
+  secondaryAction: ButtonProps;
+  isOpen: boolean;
+  onClose: () => void;
+  plantData: PlantData;
+}
