@@ -1,16 +1,21 @@
 //addPlant.tsx
 import React, { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PlantFormData } from '../types';
+import { PlantData } from '../types';
 import { Slider } from './Slider';
 import { TimePicker } from './TimeInput';
 import { PhotoUpload } from './PhotoUpload';
 import './addPlant.css';
 
-export function AddPlant() {
+interface AddPlantProps {
+  addNewPlant: (newPlant: PlantData) => void; // Define the prop type
+}
+
+export const AddPlant: React.FC<AddPlantProps> = ({ addNewPlant }) => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<PlantFormData>({
+  const [formData, setFormData] = useState<PlantData>({
+    id: '',
     name: '',
     description: '',
     temperature: 0,
@@ -19,8 +24,10 @@ export function AddPlant() {
     waterFrequency: 0,
     lightFrom: '00:00',
     lightTo: '00:00',
-    photo: null
+    photo: null,
+    isActive: false
   });
+
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -36,9 +43,14 @@ export function AddPlant() {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log(formData);
-    navigate('/plantsView');
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Add new plant using the passed method
+    addNewPlant({
+      ...formData,
+      id: (Date.now()).toString(), // Assign a unique id here
+    });
+    navigate('/myPlants'); // Navigate back to plants view after adding
   };
 
   const handleCancel = () => {

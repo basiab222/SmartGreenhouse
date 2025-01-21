@@ -1,4 +1,5 @@
-export interface PlantFormData {
+export interface PlantData {
+  id: string;
   name: string;
   description: string;
   temperature: number;
@@ -7,7 +8,8 @@ export interface PlantFormData {
   waterFrequency: number;
   lightFrom: string;
   lightTo: string;
-  photo: File | null;
+  photo: string | File | null;
+  isActive: boolean;
 }
 
 export interface SliderProps {
@@ -26,6 +28,6 @@ export interface TimePickerProps {
 }
 
 export interface PhotoUploadProps {
-  photo: File | null;
+  photo: string | File | null;
   onPhotoChange: (file: File) => void;
 }

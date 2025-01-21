@@ -10,9 +10,11 @@ export const PlantCard: React.FC<PlantCardProps> = ({
   description,
   temperature,
   humidity,
-  lightStart,
-  lightEnd,
-  imageSrc,
+  waterAmount,
+  waterFrequency,
+  lightFrom,
+  lightTo,
+  photo,
   isActive,
   onToggle,
   onEdit
@@ -21,7 +23,7 @@ export const PlantCard: React.FC<PlantCardProps> = ({
     <div className="imageContainer">
       <img
         loading="lazy"
-        src={imageSrc}
+        src={typeof photo === 'string' ? photo : ''}
         alt={`${name} plant`}
         className="plantImage"
       />
@@ -58,7 +60,9 @@ export const PlantCard: React.FC<PlantCardProps> = ({
         <br />
         Humidity: {humidity}%
         <br />
-        Light: {lightStart} - {lightEnd}
+        Watering: {waterAmount}ml / {waterFrequency} days
+        <br />
+        Light: {lightFrom} - {lightTo}
       </div>
     </div>
   </div>

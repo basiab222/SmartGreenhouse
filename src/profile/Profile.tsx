@@ -11,7 +11,7 @@ export const Profile: React.FC = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = React.useState(false);
 
   const handleManageDetails = () => {
-    navigate("/personal-details");
+    navigate("/editProfile");
   };
 
   const handleLogoutClick = () => {

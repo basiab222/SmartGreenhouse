@@ -2,7 +2,7 @@
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    padding-bottom: 9rem;
+    /* padding-bottom: 9rem; */
     background-color: white;
     max-width: 375px;
     height: 768px;

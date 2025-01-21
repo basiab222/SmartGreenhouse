@@ -21,3 +21,31 @@ export interface ProfileItemProps {
     onLogout: () => void;
     isOpen: boolean;
   }
+
+  export interface InputFieldProps {
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+    error?: string;
+    type?: string;
+    id: string;
+    name: string;
+    hasError?: boolean;
+  }
+  
+  export interface FormData {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }
+  
+  export interface FormErrors {
+    password?: string;
+    confirmPassword?: string;
+  }
+  
+  export interface HeaderProps {
+    onCancel: () => void;
+    onSave: (e: React.FormEvent) => void; // Update the type of onSave
+  }

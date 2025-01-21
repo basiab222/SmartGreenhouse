@@ -8,9 +8,11 @@ export interface PlantData {
   description: string;
   temperature: number;
   humidity: number;
-  lightStart: string;
-  lightEnd: string;
-  imageSrc: string;
+  waterAmount: number;
+  waterFrequency: number;
+  lightFrom: string;
+  lightTo: string;
+  photo: string | File | null;
   isActive: boolean;
 }
 
