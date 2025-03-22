@@ -1,0 +1,118 @@
+ScreenManager:
+    HomeScreen:
+    EditScreen:
+
+<HomeScreen>:
+    name: "home"
+    BoxLayout:
+        orientation: "vertical"
+
+        BoxLayout:
+            size_hint_y: None
+            height: "50dp"
+            padding: "10dp"
+            spacing: "10dp"
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Button:
+                text: "Edycja"
+                on_release:
+                    root.manager.current = "edit"
+
+        ScrollView:
+            do_scroll_x: False
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                padding: "20dp"
+                spacing: "15dp"
+
+                Label:
+                    text: "🌡️ Temperatura: 24.5°C"
+                    font_size: "24sp"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                Label:
+                    text: "💧 Wilgotność: 65%"
+                    font_size: "24sp"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                Label:
+                    text: "💡 Oświetlenie: WŁĄCZONE"
+                    font_size: "24sp"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                Label:
+                    text: "🌬️ Wentylacja: WYŁĄCZONA"
+                    font_size: "24sp"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+<EditScreen>:
+    name: "edit"
+    BoxLayout:
+        orientation: "vertical"
+
+        BoxLayout:
+            size_hint_y: None
+            height: "50dp"
+            padding: "10dp"
+            spacing: "10dp"
+            Button:
+                text: "Powrót"
+                on_release:
+                    root.manager.current = "home"
+
+        GridLayout:
+            cols: 1
+            padding: "20dp"
+            spacing: "15dp"
+
+            Label:
+                text: "🌡️ Ustaw temperaturę:"
+                font_size: "20sp"
+            Slider:
+                id: temp_slider
+                min: 10
+                max: 40
+                value: 24.5
+                step: 0.5
+            Label:
+                text: f"{temp_slider.value:.1f} °C"
+                font_size: "18sp"
+
+            Label:
+                text: "💧 Ustaw wilgotność:"
+                font_size: "20sp"
+            Slider:
+                id: moist_slider
+                min: 0
+                max: 100
+                value: 65
+                step: 1
+            Label:
+                text: f"{moist_slider.value:.0f} %"
+                font_size: "18sp"
+
+            Label:
+                text: "💡 Oświetlenie:"
+                font_size: "20sp"
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+                spacing: "10dp"
+                Switch:
+                    id: light_switch
+                    active: True
+                Label:
+                    text: "WŁĄCZONE" if light_switch.active else "WYŁĄCZONE"
+                    font_size: "18sp"
