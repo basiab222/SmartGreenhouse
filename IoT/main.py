@@ -7,14 +7,14 @@ import multiprocessing
 from IoT.components import heating, ventilation, water, dht11
 import preset_setting
 
-SERVER_URL = "http://localhost:5000/get_data"  # Flask URL
+SERVER_URL = "http://localhost:8081/raspberry"
 
 def get_preset_values():
     try:
         response = requests.get(SERVER_URL, timeout=5)
         if response.status_code == 200:
             data = response.json()
-            return data.get("min_temperature"), data.get("max_temperature"), data.get("min_humidity"), data.get("max_humidity")
+            return data.get("temperature"), data.get("humidity")
         else:
             print(f"⚠️ Server error: {response.status_code}")
     except requests.exceptions.RequestException as e:
@@ -29,32 +29,30 @@ def control_environment():
             data = json.load(f)
             temperature = data["temperature"]
             humidity = data["humidity"]
-            response = requests.post(SERVER_URL, json=data, timeout=5)
+            response = requests.post(SERVER_URL+"/state", json=data, timeout=5)
             if response.status_code == 200:
                 print(f"✅ Data sent: {data}")
             else:
                 print(f"⚠️ Server error: {response.status_code}")
-        min_temperature, max_temperature, min_humidity, max_humidity = get_preset_values()
+        preset_temperature, preset_humidity =  get_preset_values()
         
-        if None in (min_temperature, max_temperature, min_humidity, max_humidity):
+        if None in (preset_temperature, preset_humidity):
             print("⚠️ Error retrieving preset values. Skipping control check.")
             time.sleep(5)
             continue
 
-        if temperature < min_temperature:
+        if temperature < preset_temperature:
             heating.turn_on()
-        elif temperature > max_temperature:
+        elif temperature > preset_temperature:
             heating.turn_off()
 
-        if humidity < min_humidity:
+        if humidity < preset_humidity:
             water.turn_on()
             time.sleep(5)
             water.turn_off()
-        elif humidity > max_humidity:
-            ventilation.turn_on()
-        elif humidity < ((max_humidity + min_humidity) / 2):
             ventilation.turn_off()
-
+        elif humidity > preset_humidity:
+            ventilation.turn_on()
         time.sleep(5)
 
 def start_flask_server():

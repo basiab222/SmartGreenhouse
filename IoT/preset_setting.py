@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 preset = {"temperature": None, "humidity": None}
 
-@app.route("/update", methods=["POST"])
+@app.route("/setting", methods=["POST"])
 def update_data():
     global preset
     data = request.get_json()
@@ -15,4 +15,4 @@ def update_data():
     return jsonify({"status": "error", "message": "No JSON received"}), 400
 
 def start_server():
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=8081)
