@@ -4,7 +4,7 @@ import { PlantCard } from '../components/PlantCard';
 import { Header } from '../components/Header';
 import { SearchBar } from '../components/SearchBar';
 import { PlantData } from '../types';
-import { MainLayout } from '/Users/basia/SmartGreenhouse/SmartGreenhouse/src/navigationBar/MainLayout';
+import { MainLayout } from '../../navigationBar/MainLayout';
 import { DeactivatePlantModal } from '../components/DeactivatePlantModel';
 import { AddPlant } from '/Users/basia/SmartGreenhouse/SmartGreenhouse/src/addPlant/components/addPlant';
 import '../MyPlants.css';
